@@ -170,9 +170,7 @@ void CatapultControl(){
     // catamove = 1 : move down
     // catamove = 2 : releasing
     // catamove = 3 : released  
-    //printf("cata %d, %f, max is %f\n",cataMove,CataRotation.angle(deg),cataMax);
-         // printf("loop-------------------- %f\n",CataRotation.angle(deg));
-
+    
     if(CataRotation.angle(deg)>=cataMax-3 && CataRotation.angle(deg)<=cataMax+3&&cataMove!=1){
       // end release
       cataMove = 1;      
@@ -185,9 +183,7 @@ void CatapultControl(){
     }else if(Distance.objectDistance(mm)<=5 && cataMove == 0){
       // start release
       cataMove = 2; 
-      Catapult.spin(fwd, -100, pct);
-      chassis.DriveL.stop(hold);
-      chassis.DriveR.stop(hold);
+      Catapult.spin(fwd, -100, pct);  
       auton_tribal = auton_tribal + 1;
       printf("start release\n");
     }else if((CataRotation.angle(deg)<=5||CataRotation.angle(deg)>=355) && (cataMove==1)){
@@ -488,8 +484,6 @@ void usercontrol(void) {
     PnumaticsControl();    
     PnumaticAControl();
     PnumaticBControl();
-    autoPnumaticB();
-    
     highHang();
     // Sleep the task for a short amount of time to
     // prevent wasted resources.
