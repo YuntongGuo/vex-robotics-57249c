@@ -19,7 +19,6 @@ motor Catapult = motor(PORT20, ratio36_1, false);
 rotation CataRotation = rotation(PORT7, false);
 digital_out PneumaticA = digital_out(Brain.ThreeWirePort.A);
 digital_out PneumaticH = digital_out(Brain.ThreeWirePort.H);
-digital_out PneumaticB = digital_out(Brain.ThreeWirePort.B);
 distance Distance = distance(PORT16);
 
 // VEXcode generated functions

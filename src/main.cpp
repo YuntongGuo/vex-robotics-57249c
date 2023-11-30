@@ -3,19 +3,18 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// RightBack            motor         1
-// RightMiddle          motor         9
-// RightFront           motor         17
-// LeftBack             motor         5
-// LeftMiddle           motor         8
-// LeftFront            motor         14
-// Intake               motor         11
-// Catapult             motor         20
-// CataRotation         rotation      7
-// PneumaticA           digital_out   A
-// PneumaticH           digital_out   H
-// PneumaticB           digital_out   B
-// Distance             distance      16
+// RightBack            motor         1               
+// RightMiddle          motor         9               
+// RightFront           motor         17              
+// LeftBack             motor         5               
+// LeftMiddle           motor         8               
+// LeftFront            motor         14              
+// Intake               motor         11              
+// Catapult             motor         20              
+// CataRotation         rotation      7               
+// PneumaticA           digital_out   A               
+// PneumaticH           digital_out   H               
+// Distance             distance      16              
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
@@ -101,11 +100,9 @@ double competitionBegin;
 
 bool PneumaticAState = false;
 bool PneumaticHState = false;
-bool PneumaticBState = false;
 
 double PneumaticACooldown = Brain.timer(sec);
 double PneumaticHCooldown = Brain.timer(sec);
-double PneumaticBCooldown = Brain.timer(sec);
 
 bool CatapultOn = false;
 double CatapultCooldown = Brain.timer(sec);
@@ -248,64 +245,38 @@ void CatapultStart()
   }
 }
 
-void PnumaticsControl()
-{
-  // Pnumatics
-  if (controller(primary).ButtonR2.pressing() && Brain.timer(sec) - PneumaticACooldown >= .3 && Brain.timer(sec) - PneumaticHState >= .3)
-  {
-    PneumaticACooldown = Brain.timer(sec);
-    PneumaticHCooldown = Brain.timer(sec);
-    if (PneumaticAState || PneumaticHState)
-    {
-      PneumaticAState = !PneumaticAState;
-      PneumaticHState = !PneumaticHState;
-      PneumaticA.set(false);
-      PneumaticH.set(false);
-    }
-    else if (!(PneumaticAState && PneumaticHState))
-    {
-      PneumaticAState = !PneumaticAState;
-      PneumaticHState = !PneumaticHState;
-      PneumaticA.set(true);
-      PneumaticH.set(true);
-    }
-  }
-}
 void PnumaticAControl()
 {
   // Pnumatics
   if (controller(primary).ButtonY.pressing() && Brain.timer(sec) - PneumaticACooldown >= .3)
   {
     PneumaticACooldown = Brain.timer(sec);
-    printf("use\n");
+    PneumaticAState = !PneumaticAState;
     if (PneumaticAState)
     {
-      PneumaticAState = !PneumaticAState;
       PneumaticA.set(false);
     }
     else if (!PneumaticAState)
     {
-      PneumaticAState = !PneumaticAState;
       PneumaticA.set(true);
     }
   }
 }
-void PnumaticBControl()
+void PnumaticHControl()
 {
   // Pnumatics
-  if (controller(primary).ButtonA.pressing() && Brain.timer(sec) - PneumaticBCooldown >= .3)
+  if (controller(primary).ButtonA.pressing() && Brain.timer(sec) - PneumaticHCooldown >= .3)
   {
-    PneumaticBCooldown = Brain.timer(sec);
+    PneumaticHCooldown = Brain.timer(sec);
     printf("use\n");
-    if (PneumaticBState)
+    PneumaticHState = !PneumaticHState;
+    if (PneumaticHState)
     {
-      PneumaticBState = !PneumaticBState;
-      PneumaticB.set(false);
+      PneumaticH.set(false);
     }
-    else if (!PneumaticBState)
+    else if (!PneumaticHState)
     {
-      PneumaticBState = !PneumaticBState;
-      PneumaticB.set(true);
+      PneumaticH.set(true);
     }
   }
 }
@@ -457,7 +428,6 @@ void auton_skill()
   chassis.set_heading(0);
   chassis.right_swing_to_angle(-45);
   PneumaticA.set(true);
-  PneumaticH.set(true);
 
   chassis.drive_distance(15);
   chassis.right_swing_to_angle(-80);
@@ -466,14 +436,12 @@ void auton_skill()
   chassis.drive_distance(30, chassis.desired_heading, 12, 6, 1, 100, 1000);
   chassis.drive_distance(-18);
   PneumaticA.set(false);
-  PneumaticH.set(false);
   chassis.right_swing_to_angle(180);
   chassis.drive_max_voltage = 6;
   chassis.turn_max_voltage = 5;
   chassis.drive_distance(30);
   chassis.left_swing_to_angle(-45);
   PneumaticA.set(true);
-  PneumaticH.set(true);
   chassis.drive_distance(10);
   chassis.drive_distance(20, chassis.desired_heading, 12, 6, 1, 100, 1000);
   chassis.drive_max_voltage = 12;
@@ -511,9 +479,8 @@ void usercontrol(void)
     drivetrainControl();
     IntakeControl();
     CatapultStart();
-    PnumaticsControl();
     PnumaticAControl();
-    PnumaticBControl();
+    PnumaticHControl();
     highHang();
     // Sleep the task for a short amount of time to
     // prevent wasted resources.

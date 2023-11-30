@@ -14,7 +14,6 @@ extern motor Catapult;
 extern rotation CataRotation;
 extern digital_out PneumaticA;
 extern digital_out PneumaticH;
-extern digital_out PneumaticB;
 extern distance Distance;
 
 /**
