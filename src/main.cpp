@@ -101,12 +101,10 @@ double competitionBegin;
 
 bool PneumaticAState = false;
 bool PneumaticHState = false;
-bool PneumaticGState = false;
 bool PneumaticBState = false;
 
 double PneumaticACooldown = Brain.timer(sec);
 double PneumaticHCooldown = Brain.timer(sec);
-double PneumaticGCooldown = Brain.timer(sec);
 double PneumaticBCooldown = Brain.timer(sec);
 
 bool CatapultOn = false;
@@ -176,7 +174,6 @@ void CatapultControl(){
          // printf("loop-------------------- %f\n",CataRotation.angle(deg));
 
     if(CataRotation.angle(deg)>=cataMax-3 && CataRotation.angle(deg)<=cataMax+3&&cataMove!=1){
-      //printf("current angle: %f\n",CataRotation.angle(deg));
       // end release
       cataMove = 1;      
       
@@ -274,15 +271,7 @@ void PnumaticBControl(){
       }
     }
 }
-void autoPnumaticB(){
-  if(Brain.timer(sec)-competitionBegin>104 && PneumaticBState){
-  
-  while(1) {
-    PneumaticB.set(true);
-    this_thread::sleep_for(100);
-  }
-  }
-}
+
 void highHang(){
   if(controller(primary).ButtonX.pressing()){
     chassis.DriveL.spin(fwd,-12,volt);
@@ -394,24 +383,22 @@ void closeside_auton(){
   chassis.drive_distance(-30,chassis.desired_heading,10,6,1,100,1000);
 }
 void auton_skill(){
-          printf("start run -----------------------------\n");
-
+  printf("start run -----------------------------\n");
   cataMax = CataRotation.angle(deg);
-        printf("%f\n",cataMax);
-
+  printf("%f\n",cataMax);
   chassis.drive_max_voltage = 12;
   chassis.right_swing_to_angle(-65);
   PneumaticA.set(true);
-  // while(auton_tribal<4){
+  while(auton_tribal<4){
     
-  //   //printf("current %f\n",CataRotation.angle(deg));
+    //printf("current %f\n",CataRotation.angle(deg));
 
-  //   CatapultControl();
-  //   wait(20, msec);
-  // }
-  // wait(2, sec);
-      Catapult.spin(fwd, -100, pct);
-  wait(40, sec);
+    CatapultControl();
+    wait(20, msec);
+  }
+  wait(2, sec);
+  //     Catapult.spin(fwd, -100, pct);
+  // wait(40, sec);
   PneumaticA.set(false);
   Catapult.stop(coast);
   printf("end\n");

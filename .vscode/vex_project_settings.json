@@ -1,0 +1,18 @@
+{
+	"project": {
+		"name": "C-team-Far",
+		"slot": 1,
+		"description": "formal competition code for c-team",
+		"platform": "V5",
+		"creationDate": "Thu, 30 Nov 2023 23:11:18 GMT",
+		"language": "cpp",
+		"sdkVersion": "V5_20220726_10_00_00",
+		"cpp": {
+			"includePath": []
+		}
+	},
+	"extension": {
+		"version": "0.5.0",
+		"json": 1
+	}
+}
