@@ -15,6 +15,7 @@ extern rotation CataRotation;
 extern digital_out PneumaticA;
 extern digital_out PneumaticH;
 extern distance Distance;
+extern digital_out PneumaticB;
 
 /**
  * Used to initialize code/tasks/devices added using tools in VEXcode Pro.

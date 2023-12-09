@@ -3,18 +3,19 @@
 // ---- START VEXCODE CONFIGURED DEVICES ----
 // Robot Configuration:
 // [Name]               [Type]        [Port(s)]
-// RightBack            motor         1               
+// RightBack            motor         8               
 // RightMiddle          motor         9               
-// RightFront           motor         17              
-// LeftBack             motor         5               
-// LeftMiddle           motor         8               
-// LeftFront            motor         14              
-// Intake               motor         11              
-// Catapult             motor         20              
-// CataRotation         rotation      7               
+// RightFront           motor         10              
+// LeftBack             motor         12              
+// LeftMiddle           motor         2               
+// LeftFront            motor         1               
+// Intake               motor         20              
+// Catapult             motor         7               
+// CataRotation         rotation      11              
 // PneumaticA           digital_out   A               
 // PneumaticH           digital_out   H               
-// Distance             distance      16              
+// Distance             distance      6               
+// PneumaticB           digital_out   B               
 // ---- END VEXCODE CONFIGURED DEVICES ----
 
 using namespace vex;
@@ -43,7 +44,7 @@ Drive chassis(
     motor_group(RightFront, RightMiddle, RightBack),
 
     // PORT NUMBER of inertial sensor
-    PORT15,
+    PORT19,
 
     // wheel diameter
     3.25,
@@ -98,10 +99,10 @@ int cataMove = 3;
 double cataMax = CataRotation.angle(deg);
 double competitionBegin;
 
-bool PneumaticAState = false;
+bool PneumaticsState = false;
 bool PneumaticHState = false;
 
-double PneumaticACooldown = Brain.timer(sec);
+double PneumaticsCooldown = Brain.timer(sec);
 double PneumaticHCooldown = Brain.timer(sec);
 
 bool CatapultOn = false;
@@ -196,7 +197,7 @@ void CatapultControl()
     // printf("current----------- %f\n",CataRotation.angle(deg));
     printf("end release\n");
   }
-  else if (Distance.objectDistance(mm) <= 5 && cataMove == 0)
+  else if ((Distance.objectDistance(mm) <= 20 || controller(primary).ButtonB.pressing())&& cataMove == 0)
   {
     // start release
     cataMove = 2;
@@ -204,11 +205,27 @@ void CatapultControl()
     auton_tribal = auton_tribal + 1;
     printf("start release\n");
   }
-  else if ((CataRotation.angle(deg) <= 5 || CataRotation.angle(deg) >= 355) && (cataMove == 1))
+  else if ((CataRotation.angle(deg) <= 5 || CataRotation.angle(deg) >= 355) && (cataMove == 1)
+  &&!(Distance.objectDistance(mm) <= 20|| controller(primary).ButtonB.pressing()))
   {
-    if (Distance.objectDistance(mm) <= 5)
+    // if (Distance.objectDistance(mm) <= 5)
+    // {
+    //   printf("block diurect fire\n");
+    //   cataMove = 2;
+    //   Catapult.spin(fwd, -100, pct);
+    //   chassis.DriveL.stop(hold);
+    //   chassis.DriveR.stop(hold);
+    //   auton_tribal = auton_tribal + 1;
+    //   return;
+    // }
+    // rest
+    cataMove = 0;
+    Catapult.stop(hold);
+    printf("rest\n");
+    // Catapult.spinFor(fwd,3,deg);
+  }
+  if ((Distance.objectDistance(mm) <= 20|| controller(primary).ButtonB.pressing()))
     {
-      printf("block diurect fire\n");
       cataMove = 2;
       Catapult.spin(fwd, -100, pct);
       chassis.DriveL.stop(hold);
@@ -216,12 +233,6 @@ void CatapultControl()
       auton_tribal = auton_tribal + 1;
       return;
     }
-    // rest
-    cataMove = 0;
-    Catapult.stop(hold);
-    printf("rest\n");
-    // Catapult.spinFor(fwd,3,deg);
-  }
 
   if (cataMove == 1)
   {
@@ -245,20 +256,23 @@ void CatapultStart()
   }
 }
 
-void PnumaticAControl()
+void PnumaticsControl()
 {
   // Pnumatics
-  if (controller(primary).ButtonY.pressing() && Brain.timer(sec) - PneumaticACooldown >= .3)
+  if (controller(primary).ButtonR2.pressing() && Brain.timer(sec) - PneumaticsCooldown >= .3)
   {
-    PneumaticACooldown = Brain.timer(sec);
-    PneumaticAState = !PneumaticAState;
-    if (PneumaticAState)
+    PneumaticsCooldown = Brain.timer(sec);
+    PneumaticsState = !PneumaticsState;
+    if (PneumaticsState)
     {
       PneumaticA.set(false);
+      PneumaticB.set(false);
+
     }
-    else if (!PneumaticAState)
+    else if (!PneumaticsState)
     {
       PneumaticA.set(true);
+      PneumaticB.set(true);
     }
   }
 }
@@ -288,12 +302,12 @@ void highHang()
     chassis.DriveL.spin(fwd, -12, volt);
     chassis.DriveR.spin(fwd, -12, volt);
     wait(.5, sec);
-    if (!PneumaticBState)
+    if (!PneumaticHState)
     {
-      PneumaticBState = !PneumaticBState;
+      PneumaticHState = !PneumaticHState;
     }
 
-    PneumaticB.set(true);
+    PneumaticH.set(true);
     chassis.DriveL.spin(fwd, 12, volt);
     chassis.DriveR.spin(fwd, 12, volt);
     wait(.9, sec);
@@ -479,7 +493,7 @@ void usercontrol(void)
     drivetrainControl();
     IntakeControl();
     CatapultStart();
-    PnumaticAControl();
+    PnumaticsControl();
     PnumaticHControl();
     highHang();
     // Sleep the task for a short amount of time to
