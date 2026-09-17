@@ -3,7 +3,7 @@
   <desc id="desc">Six original commits from November 30 to December 8, 2023. Project import, build setup, editor cleanup, formatting, pneumatics, and hardware/control updates.</desc>
   <defs>
     <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0d1728"/><stop offset="1" stop-color="#17283a"/></linearGradient>
-    <linearGradient id="line" x2="0" y2="1"><stop stop-color="#58d5ca"/><stop offset="1" stop-color="#88aaff"/></linearGradient>
+    <linearGradient id="line" gradientUnits="userSpaceOnUse" x1="224" y1="190" x2="224" y2="556"><stop stop-color="#58d5ca"/><stop offset="1" stop-color="#88aaff"/></linearGradient>
   </defs>
   <rect width="1000" height="640" rx="24" fill="url(#bg)"/>
   <g font-family="Segoe UI, Arial, sans-serif">
