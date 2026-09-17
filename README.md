@@ -79,8 +79,8 @@ The port map below describes the committed configuration. The inertial sensor is
 1. Clone the repository:
 
    ```sh
-   git clone https://github.com/YuntongGuo/C-teamcode.git
-   cd C-teamcode
+   git clone https://github.com/YuntongGuo/vex-robotics-57249c.git
+   cd vex-robotics-57249c
    ```
 
 2. Open the folder in **Visual Studio Code with the VEX Robotics extension**. The saved settings target V5 C++ and SDK `V5_20220726_10_00_00`. If the extension does not recognize the legacy project, use its project import workflow for `C-team-Far.v5code`.
@@ -97,14 +97,14 @@ Milestones below summarize the actual diffs. Links open the original commits, wh
 
 | Date | Milestone | Commit |
 | --- | --- | --- |
-| Nov 30, 2023 | Import the VEXcode competition project and JAR Template sources. | [`c41e46f`](https://github.com/YuntongGuo/C-teamcode/commit/c41e46fc1cf8c0c017beb4720179464190bf2237) |
-| Nov 30, 2023 | Add VS Code project settings, update build configuration, and remove generated build outputs from the working tree. | [`c41dde1`](https://github.com/YuntongGuo/C-teamcode/commit/c41dde1fd5c1d377c4f5294e3184e26d6f478c99) |
-| Nov 30, 2023 | Clean up comments and add editor configuration. | [`c753bb8`](https://github.com/YuntongGuo/C-teamcode/commit/c753bb8a5e8328d8f17d5c283fcbd452ec1c3b3a) |
-| Nov 30, 2023 | Format the main robot program. | [`5dea9a0`](https://github.com/YuntongGuo/C-teamcode/commit/5dea9a076488842a2b94c3ca4d7af535a84c5171) |
-| Nov 30, 2023 | Revise pneumatic configuration and controls. | [`c8e37f7`](https://github.com/YuntongGuo/C-teamcode/commit/c8e37f730d6972bba38d824212943ef5ce810e2b) |
-| Dec 8, 2023 | Update motor/sensor ports, catapult triggering, paired pneumatics, and the hang output. | [`b39574f`](https://github.com/YuntongGuo/C-teamcode/commit/b39574f466681a0f5c3d41491d003a7a0cccf2b3) |
+| Nov 30, 2023 | Import the VEXcode competition project and JAR Template sources. | [`c41e46f`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/c41e46fc1cf8c0c017beb4720179464190bf2237) |
+| Nov 30, 2023 | Add VS Code project settings, update build configuration, and remove generated build outputs from the working tree. | [`c41dde1`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/c41dde1fd5c1d377c4f5294e3184e26d6f478c99) |
+| Nov 30, 2023 | Clean up comments and add editor configuration. | [`c753bb8`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/c753bb8a5e8328d8f17d5c283fcbd452ec1c3b3a) |
+| Nov 30, 2023 | Format the main robot program. | [`5dea9a0`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/5dea9a076488842a2b94c3ca4d7af535a84c5171) |
+| Nov 30, 2023 | Revise pneumatic configuration and controls. | [`c8e37f7`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/c8e37f730d6972bba38d824212943ef5ce810e2b) |
+| Dec 8, 2023 | Update motor/sensor ports, catapult triggering, paired pneumatics, and the hang output. | [`b39574f`](https://github.com/YuntongGuo/vex-robotics-57249c/commit/b39574f466681a0f5c3d41491d003a7a0cccf2b3) |
 
-[Browse the full commit history →](https://github.com/YuntongGuo/C-teamcode/commits/master/)
+[Browse the full commit history →](https://github.com/YuntongGuo/vex-robotics-57249c/commits/master/)
 
 ## Credits
 
