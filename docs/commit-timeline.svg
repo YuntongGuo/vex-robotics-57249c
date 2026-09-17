@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="640" viewBox="0 0 1000 640" role="img" aria-labelledby="title desc">
+  <title id="title">57249C development timeline</title>
+  <desc id="desc">Six original commits from November 30 to December 8, 2023. Project import, build setup, editor cleanup, formatting, pneumatics, and hardware/control updates.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0d1728"/><stop offset="1" stop-color="#17283a"/></linearGradient>
+    <linearGradient id="line" x2="0" y2="1"><stop stop-color="#58d5ca"/><stop offset="1" stop-color="#88aaff"/></linearGradient>
+  </defs>
+  <rect width="1000" height="640" rx="24" fill="url(#bg)"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="48" y="53" fill="#58d5ca" font-size="14" font-weight="700" letter-spacing="3">57249C / HIGH SCHOOL ROBOTICS</text>
+    <text x="48" y="101" fill="#f3f7ff" font-size="34" font-weight="700">From project setup to robot refinement</text>
+    <text x="48" y="133" fill="#acbdd2" font-size="17">November–December 2023 · Six original commits · VEX V5 + C++</text>
+    <path d="M224 190 V556" stroke="url(#line)" stroke-width="3"/>
+    <g fill="#acbdd2" font-size="16" text-anchor="end">
+      <text x="193" y="198">NOV 30</text><text x="193" y="270">NOV 30</text><text x="193" y="342">NOV 30</text>
+      <text x="193" y="414">NOV 30</text><text x="193" y="486">NOV 30</text><text x="193" y="558">DEC 08</text>
+    </g>
+    <g fill="#112033" stroke="#58d5ca" stroke-width="3">
+      <circle cx="224" cy="192" r="7"/><circle cx="224" cy="264" r="7"/><circle cx="224" cy="336" r="7"/>
+      <circle cx="224" cy="408" r="7"/><circle cx="224" cy="480" r="7"/><circle cx="224" cy="552" r="7" stroke="#88aaff"/>
+    </g>
+    <g fill="#f3f7ff" font-size="21" font-weight="600">
+      <text x="255" y="198">Competition project imported</text>
+      <text x="255" y="270">Build &amp; editor setup</text>
+      <text x="255" y="342">Source cleanup</text>
+      <text x="255" y="414">Code formatting</text>
+      <text x="255" y="486">Pneumatic controls revised</text>
+      <text x="255" y="558">Hardware &amp; mechanism updates</text>
+    </g>
+    <g fill="#acbdd2" font-size="15">
+      <text x="255" y="224">VEXcode project, robot routines, and JAR Template</text>
+      <text x="255" y="296">VS Code settings, build configuration, generated-file cleanup</text>
+      <text x="255" y="368">Comment cleanup and editor configuration</text>
+      <text x="255" y="440">Consistent formatting across the main robot program</text>
+      <text x="255" y="512">Pneumatic configuration and controller logic</text>
+      <text x="255" y="584">Ports, catapult trigger, paired pneumatics, and hang output</text>
+    </g>
+    <g fill="#88aaff" font-size="15" font-family="Consolas, monospace" text-anchor="end">
+      <text x="951" y="198">c41e46f</text><text x="951" y="270">c41dde1</text><text x="951" y="342">c753bb8</text>
+      <text x="951" y="414">5dea9a0</text><text x="951" y="486">c8e37f7</text><text x="951" y="558">b39574f</text>
+    </g>
+  </g>
+</svg>
